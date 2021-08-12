@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+.card-deck .card {margin-bottom:20px;}
+ 
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+ 
+<p><input type="text" id="ageToCheck"  onkeyup="newmyFunction()"></p>
+<div class="card-deck" id="showdata">
+  
+  
+
+ 
+ 
+ 
+ 
+  </div>
+  
+
+
+ 
+ 
+
+<!--<input type="text" id="searchValue" onkeyup="search()"> 
+<p id="searchitem"></p>
+
+<p><input type="text" id="ageToCheck" value="18" onkeyup="myFunction()"></p>
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>-->
+
+
+
+<script>
+
+//document.getElementById("showdata").innerText="dddddddd";
+
+var url_string = window.location.href;
+var url = new URL(url_string);
+var id = url.searchParams.get("id");
+document.write(id);
+
+var employees = [
+ {img:"https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg", title: "A1", description:"Cocktail glass", type: "Alcoholic"},
+ {img:"https://www.thecocktaildb.com/images/media/drink/tqpvqp1472668328.jpg", title: "ABC", description:"Shot glass", type: "Alcoholic"},
+{img:"https://www.thecocktaildb.com/images/media/drink/l3cd7f1504818306.jpg", title: "Ace", description:"Martini Glass", type: "Alcoholic"},
+
+{img:"https://www.thecocktaildb.com/images/media/drink/v0at4i1582478473.jpg", title: "Adam", description:"Cocktail glass", type: "Alcoholic"},
+{img:"https://www.thecocktaildb.com/images/media/drink/rhhwmp1493067619.jpg", title: "AT&T", description:"Highball Glass", type: "Alcoholic"},
+{img:"https://www.thecocktaildb.com/images/media/drink/xuxpxt1479209317.jpg", title: "ACID", description:"Shot glass", type: "Alcoholic"}
+     
+];
+ 
+
+var output1 =  employees.filter(employee => employee);
+for(var i=0;i<output1.length;i++){
+   //document.write("<h2>", output1[i].name, output1[i].department, "</h2>", "<br/>");
+   img=output1[i].img;
+   title=output1[i].title;
+   description=output1[i].description;
+   type=output1[i].type;
+
+ 
+  var objTo = document.getElementById("showdata");
+    var divtest = document.createElement("div");
+	divtest.className = 'col-md-4'; 
+    divtest.innerHTML = "<div class='card'><img class='card-img-top' src='"+img+"' alt='test imag111'><div class='card-body'><h5 class='card-title'>"+title+"</h5><p class='card-text'>"+description+"</p><p class='card-text'><small class='text-muted'>"+type+"</small></p><a class='btn btn-primary btn-details' href='?id=17222'>details</a></div></div>";
+    objTo.appendChild(divtest);
+  
+  
+	
+	
+	/*var node = document.createElement("h1");
+  var textnode = document.createTextNode(name);
+  node.appendChild(textnode);
+  document.getElementById("showdata").appendChild(node);*/
+  
+
+   
+   
+   
+};
+
+
+/*for(var i=0; i<employees.length; i++){
+   //document.write("<h2>", employees[i].name, employees[i].department, "</h2>", "<br/>")
+   var a =   employees[i].name;
+   document.getElementById("showdata").innerText=a;
+   
+};*/
+
+
+
+  function newmyFunction(){
+  document.getElementById("showdata").innerHTML="";
+  var ss= document.getElementById("ageToCheck").value;
+  
+   re = new RegExp(ss,'gi');
+var output =  employees.filter(employee => employee.title.match(re));
+for(var i=0;i<output.length;i++){
+   // document.write("<h2>", output[i].title, output[i].description, "</h2>", "<br/>");
+   
+    img=output[i].img;
+   title=output[i].title;
+   description=output[i].description;
+   type=output[i].type;
+
+ 
+  var objTo = document.getElementById("showdata");
+    var divtest = document.createElement("div");
+	divtest.className = 'col-md-4'; 
+    divtest.innerHTML = "<div class='card'><img class='card-img-top' src='"+img+"' alt='test imag111'><div class='card-body'><h5 class='card-title'>"+title+"</h5><p class='card-text'>"+description+"</p><p class='card-text'><small class='text-muted'>"+type+"</small></p></div></div>";
+    objTo.appendChild(divtest);
+   
+   
+   
+   
+ /* var node = document.createElement("h2");
+  var textnode = document.createTextNode(name);
+  node.appendChild(textnode);
+  document.getElementById("showdata").appendChild(node); */
+};
+}
+
+/*
+var wrapper = document.createElement('div');
+wrapper.className = 'append_test'; 
+
+var myDiv = document.getElementById('showdata'); 
+wrapper.appendChild(myDiv.cloneNode(true)); 
+myDiv.parentNode.replaceChild(wrapper, myDiv);
+
+
+var objTo = document.getElementById('showdata');
+    var divtest = document.createElement("div");
+	divtest.className = 'append_test'; 
+    divtest.innerHTML = "new div";
+    objTo.appendChild(divtest);*/
+</script>
+
+
+<!--
+<script>
+
+
+
+var ages = ["lokesh", "atul", "amar", "aman", "shivam" ];
+ 
+
+function checkAge(age) {
+ // return age == document.getElementById("ageToCheck").value;	
+  
+return  age.match(document.getElementById("ageToCheck").value);
+  
+}
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = (ages.name).filter(checkAge);
+}
+
+</script>
+ 
+ 
+
+<script>
+function search()
+{
+
+var a = document.getElementById("searchValue").value;
+
+ document.getElementById("searchitem").innerText=a;
+ 
+}
+ 
+ 
+</script> -->
+
+</body>
+</html>

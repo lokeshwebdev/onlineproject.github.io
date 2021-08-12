@@ -1,0 +1,48 @@
+<html>
+
+<head>
+<title>
+</title>
+<style>
+.box{width: 500px;
+    margin: 200px auto;
+    text-align: center;}
+.box p{background: #222222;
+    color: #fff;
+    padding: 20px;
+    font-size: 35px;
+    border-radius: 20px;  }
+.btn_cls{font-size: 25px;
+    border-radius: 10px;
+    border: 3px solid #000;
+    background: transparent; transition: 0.9s;padding: 10px;}
+
+.btn_cls:hover{background: #222222; color:#fff;cursor: pointer;}	
+	
+	
+</style>
+
+</head>
+
+
+
+<body>
+<div class="box">
+<p>
+ Background Color : <label id="showColor"></label></p>
+<button onclick="changebg()" class="btn_cls"> CLICK ME </button>
+
+</div></body>
+
+<script>
+document.getElementById("showColor").innerText="#ffffff";
+function changebg() {
+var color=['FF0000','FFA500','FFFF00','808000','FF00FF','000080']; 
+var item = color[Math.floor(Math.random()*color.length)];
+document.body.style.backgroundColor = item;
+
+document.getElementById("showColor").innerText="#"+item;
+
+}
+</script>
+</html>

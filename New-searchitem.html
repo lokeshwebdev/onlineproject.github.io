@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+p{font-size:18px}
+#search_box{    text-align: center;
+    /* margin-top: -13px; */
+    width: 508px;
+    margin: 18px auto 49px;
+    background: #eee;
+    padding: 20px;
+    box-shadow: 2px 4px 3px 0px #888;}
+.card-deck .card {margin:0px 0px 20px; 0px		}
+ .bg_cls {background: #d4e6a5;
+    padding: .25rem .5rem;
+    color: #476a2e;
+    border-radius: 6px;
+    margin-right: 12px;
+    font-weight: bold;}
+.detail_box{width:100%}
+.box-shadow{box-shadow: 2px 4px 3px 0px #888;}
+</style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+<div class="container">
+  <a class="navbar-brand" href="#">COCKTAIL DB LOGO</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="?#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?about=description">About us</a>
+      </li>
+       
+      
+    </ul>
+  </div>
+    </div>
+</nav>
+
+<div class="container p-5">
+
+
+
+<div id="search_box"> 
+<p>Search Your Favorite Cocktail</p>
+<p> <input type="text" id="searchcocktails"  onkeyup="newmyFunction()"     width='100%'></p>
+</div>
+<div class="card-deck" id="showdata">
+  
+  
+ 
+ 
+</div>
+  
+
+
+ 
+  
+
+
+<script>
+
+//document.getElementById("showdata").innerText="dddddddd";
+
+var url_string = window.location.href;
+
+var url = new URL(url_string);
+var cocktailId = url.searchParams.get("id");
+var about = url.searchParams.get("about");
+ 
+
+var employees = [
+ {id:1,img:"https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg", title: "A1", glass:"Cocktail glass", type: "Alcoholic", des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", ingredients: " Gin Grand Marnier Lemon Juice Grenadine"},
+ {id:2,img:"https://www.thecocktaildb.com/images/media/drink/tqpvqp1472668328.jpg", title: "ABC", glass:"Shot glass", type: "Alcoholic"},
+{id:3,img:"https://www.thecocktaildb.com/images/media/drink/l3cd7f1504818306.jpg", title: "Ace", glass:"Martini Glass", type: "Alcoholic", des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", ingredients: " Gin Grand Marnier Lemon Juice Grenadine"},
+
+{id:4,img:"https://www.thecocktaildb.com/images/media/drink/v0at4i1582478473.jpg", title: "Adam", glass:"Cocktail glass", type: "Alcoholic", des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", ingredients: " Gin Grand Marnier Lemon Juice Grenadine"},
+{id:5,img:"https://www.thecocktaildb.com/images/media/drink/rhhwmp1493067619.jpg", title: "AT&T", glass:"Highball Glass", type: "Alcoholic", des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", ingredients: " Gin Grand Marnier Lemon Juice Grenadine"},
+{id:6,img:"https://www.thecocktaildb.com/images/media/drink/xuxpxt1479209317.jpg", title: "ACID", glass:"Shot glass", type: "Alcoholic", des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", ingredients: " Gin Grand Marnier Lemon Juice Grenadine"},
+
+{id:7,img:"https://www.thecocktaildb.com/images/media/drink/l74qo91582480316.jpg", title: "A. J.", glass:"Cocktail glass", type: "Alcoholic", des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", ingredients: " Gin Grand Marnier Lemon Juice Grenadine"},
+
+{id:8,img:"https://www.thecocktaildb.com/images/media/drink/808mxk1487602471.jpg", title: "Karsk", glass:"Highball glass", type: "Alcoholic", des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", ingredients: " Gin Grand Marnier Lemon Juice Grenadine"},
+
+{id:9,img:"https://www.thecocktaildb.com/images/media/drink/xwtptq1441247579.jpg", title: "Melya", glass:"Coffee mug", type: "Non alcoholic", des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", ingredients: " Gin Grand Marnier Lemon Juice Grenadine"}
+     
+];
+ 
+ /* Show All item default*/
+if((cocktailId==''|| cocktailId==null)&& (about=='' || about==null)){
+
+
+
+var output1 =  employees.filter(employee => employee);
+for(var i=0;i<output1.length;i++){
+   //document.write("<h2>", output1[i].name, output1[i].department, "</h2>", "<br/>");
+   img=output1[i].img;
+   title=output1[i].title;
+   glass=output1[i].glass;
+   type=output1[i].type;
+    id=output1[i].id;
+    ingredients=output1[i].ingredients;
+
+ 
+  var objTo = document.getElementById("showdata");
+    var divtest = document.createElement("div");
+	divtest.className = 'col-md-4'; 
+    divtest.innerHTML = "<div class='card box-shadow'><img class='card-img-top' src='"+img+"' alt='test imag111'><div class='card-body'><h5 class='card-title'>"+title+"</h5><p class='card-text'>"+glass+"</p><p class='card-text'><small class='text-muted'>"+type+"</small></p><a class='btn btn-primary btn-details' href='?id="+id+"'>Details</a></div></div>";
+    objTo.appendChild(divtest);
+  
+  
+
+	 
+   
+}
+
+}
+/* Show All item default end*/	
+/* Show About us*/
+else if(about =='description') {
+document.getElementById("search_box").style.display = "none";
+
+ var objTo = document.getElementById("showdata");
+    var divtest = document.createElement("div");
+	divtest.className = 'about'; 
+    divtest.innerHTML = "<h1 class='text-center m-4'>About Us</h1><p class='text-justify'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>";
+    objTo.appendChild(divtest);
+
+	}
+	/* Show About us end*/
+/* Show Item Detail*/
+
+else {
+
+
+ 
+document.getElementById("search_box").style.display = "none";
+ 
+ aaa='12';
+ var patt1 = /[1-4]/g;
+ //re = new RegExp(aaa,'gi');
+ 
+var output =  employees.filter(employee => employee.id==cocktailId);
+for(var i=0;i<output.length;i++){
+   
+   
+   img=output[i].img;
+   title=output[i].title;
+   glass=output[i].glass;
+   type=output[i].type;
+   des=output[i].des;
+   ingredients=output[i].ingredients;
+
+ 
+  var objTo = document.getElementById("showdata");
+    var divtest = document.createElement("div");
+	divtest.className = 'detail_box'; 
+    divtest.innerHTML = "<h1  class='text-center p-4'>"+title+"</h1><div class='row'><div class='col-md-5 pb-4'><img class='card-img-top' src='"+img+"' alt='test imag111'></div><div class='col-md-7'> <p><span class='bg_cls'>Name :</span> A1</p><p><span class='bg_cls'>category :</span> Cocktail</p> <p><span class='bg_cls'>Info :</span> "+type+"</p><p><span class='bg_cls'>Glass :</span> "+glass+"</p><p class=''><span class='bg_cls'>Instructons: </span>"+des+"</p><p><span class='bg_cls'>Ingredients :</span>"+ingredients+" </p></div></div>";++
+    objTo.appendChild(divtest);
+   
+
+}
+} 
+/* Show Item Detail end*/
+
+/* Search Item start*/
+
+  function newmyFunction(){
+  document.getElementById("showdata").innerHTML="";
+  var ss= document.getElementById("searchcocktails").value;
+  
+   re = new RegExp(ss,'gi');
+var output =  employees.filter(employee => employee.title.match(re));
+if(output==''){
+
+var objTo = document.getElementById("showdata");
+    var divtest = document.createElement("div");
+	divtest.className = 'col-md-12'; 
+    divtest.innerHTML = "<h1 class='text-center'>No Cocktails Matched Your Search Criteria</p>";
+    objTo.appendChild(divtest);
+               }
+for(var i=0;i<output.length;i++){
+   // document.write("<h2>", output[i].title, output[i].description, "</h2>", "<br/>");
+   
+   img=output[i].img;
+   title=output[i].title;
+   glass=output[i].glass;
+   type=output[i].type;
+
+ 
+  var objTo = document.getElementById("showdata");
+    var divtest = document.createElement("div");
+	divtest.className = 'col-md-4'; 
+    divtest.innerHTML = "<div class='card box-shadow'><img class='card-img-top' src='"+img+"' alt='test imag111'><div class='card-body'><h5 class='card-title'>"+title+"</h5><p class='card-text'>"+glass+"</p><p class='card-text'><small class='text-muted'>"+type+"</small></p><a class='btn btn-primary btn-details' href='?id="+id+"'>Details</a></div></div>";
+    objTo.appendChild(divtest);
+   
+   
+   
+};
+}
+/* Search Item End*/
+ 
+</script>
+
+ 
+
+</body>
+</html>
